@@ -63,7 +63,6 @@
   <input type="submit" value="Submit" id="submitButton" disabled>
 
   <script>
-    // Enable the Submit button and Self Declaration checkbox when all required fields are filled
     const requiredFields = document.querySelectorAll('[required]');
     const selfDeclarationCheckbox = document.getElementById('selfDeclaration');
     const submitButton = document.getElementById('submitButton');
@@ -76,7 +75,6 @@
       });
     });
 
-    // Restrict phone number field to accept only numbers (no alphabets)
     const phoneNumberField = document.getElementById('phoneNumber');
     phoneNumberField.addEventListener('input', () => {
       phoneNumberField.value = phoneNumberField.value.replace(/[^0-9]/g, '');
