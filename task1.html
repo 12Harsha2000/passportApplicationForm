@@ -5,23 +5,22 @@
 </head>
 <body>
   <h2>PASSPORT APPLICATION FORM</h2>
-  <h3> Government of India, Ministry of External Affairs</h3>
+  <h3>Government of India, Ministry of External Affairs</h3>
 
   <h3>Service Required</h3>
 
-  <label for="">Type of Application:</label>
+  <label for="applicationType">Type of Application:</label>
   <input type="radio" name="applicationType" value="normal" required>Normal
   <input type="radio" name="applicationType" value="tatkal">Tatkal<br>
 
-  <label for="">Type of Booklet:</label>
+  <label for="bookletType">Type of Booklet:</label>
   <input type="radio" name="bookletType" value="36 pages" required>36 pages
   <input type="radio" name="bookletType" value="60 pages">60 pages<br>
 
-  <label for="">Validity Required:</label>
+  <label for="validityType">Validity Required:</label>
   <input type="radio" name="validityType" value="10years" required>10 years
   <input type="radio" name="validityType" value="up to 18 years">Up to 18 years
   <input type="radio" name="validityType" value="notApplicable">Not Applicable<br>
-
 
   <h3>Applicant Details</h3>
 
@@ -35,33 +34,53 @@
   <input type="text" id="nationality" name="nationality" required><br>
 
   <label for="gender">Gender:</label>
-  <input type="radio" id="gender"  name="gender" value="male" required>Male
-  <input type="radio" id="gender"  name="gender" value="female">Female<br>
+  <input type="radio" id="gender" name="gender" value="male" required>Male
+  <input type="radio" id="gender" name="gender" value="female">Female<br>
 
-  <label for="marital status">Marital Status:</label>
-  <input type="radio" id="marital status" name="marital status" value="married" required>Married
-  <input type="radio" id="marital status" name="marital status" value="Unmarried" required>Unmarried<br>
+  <label for="maritalStatus">Marital Status:</label>
+  <input type="radio" id="maritalStatus" name="maritalStatus" value="married" required>Married
+  <input type="radio" id="maritalStatus" name="maritalStatus" value="Unmarried" required>Unmarried<br>
 
   <label for="address">Address:</label>
   <textarea id="address" name="address" rows="4" required></textarea><br>
 
-  <label for="phone number">Phone Number:</label>
-  <input type="tel" id="phoneNumber" name="phoneNumber" required><br>
+  <label for="phoneNumber">Phone Number:</label>
+  <input type="tel" id="phoneNumber" name="phoneNumber" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number (numbers only)"><br>
 
   <label for="adhar">Adhar Number:</label>
-  <input type="adhar" id="adhar" name="adhar" required><br>
+  <input type="text" id="adhar" name="adhar" required><br>
 
   <label for="educationalQualification">Educational Qualification:</label>
-  <input type="text" id="educationalQualification" name="educationalQualification"><br>
+  <input type="text" id="educationalQualification" name="educationalQualification" required><br>
 
   <label for="distinguishingMark">Visible Distinguishing Mark:</label>
-  <input type="text" id="distinguishingMark" name="distinguishingMark"><br>
-
+  <input type="text" id="distinguishingMark" name="distinguishingMark" required><br>
 
   <h3>Self Declaration</h3>
-  <input type="checkbox" id="selfDeclaration" name="selfDeclaration" required>
+  <input type="checkbox" id="selfDeclaration" name="selfDeclaration" required disabled>
   <label for="selfDeclaration">I affirm that all the information given by me in this form is True.</label><br>
 
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" id="submitButton" disabled>
+
+  <script>
+    // Enable the Submit button and Self Declaration checkbox when all required fields are filled
+    const requiredFields = document.querySelectorAll('[required]');
+    const selfDeclarationCheckbox = document.getElementById('selfDeclaration');
+    const submitButton = document.getElementById('submitButton');
+
+    requiredFields.forEach(field => {
+      field.addEventListener('input', () => {
+        const allFieldsFilled = [...requiredFields].every(field => field.value.trim() !== '');
+        selfDeclarationCheckbox.disabled = !allFieldsFilled;
+        submitButton.disabled = !allFieldsFilled;
+      });
+    });
+
+    // Restrict phone number field to accept only numbers (no alphabets)
+    const phoneNumberField = document.getElementById('phoneNumber');
+    phoneNumberField.addEventListener('input', () => {
+      phoneNumberField.value = phoneNumberField.value.replace(/[^0-9]/g, '');
+    });
+  </script>
 </body>
 </html>
