@@ -4,6 +4,7 @@
   <title>Passport Application Form</title>
 </head>
 <body>
+  <form name="myForm">
   <h2>PASSPORT APPLICATION FORM</h2>
   <h3>Government of India, Ministry of External Affairs</h3>
 
@@ -81,12 +82,23 @@
         submitButton.disabled = !allFieldsFilled;
       });
     });
-
-    
     const phoneNumberField = document.getElementById('phoneNumber');
     phoneNumberField.addEventListener('input', () => {
       phoneNumberField.value = phoneNumberField.value.replace(/[^0-9]/g, '');
     });
+
+    const form = document.myForm;
+    form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let formData = new FormData(this);
+    let object = {};
+    formData.forEach((value, key) => {
+     object[key] = value
+    });
+    let json = JSON.stringify(object);
+    console.log(json);
+    }, false);
+  
   </script>
 </body>
 </html>
