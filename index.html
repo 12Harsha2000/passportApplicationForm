@@ -128,25 +128,8 @@
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log("Retrieved data:", responseData[52]);{
-          let displayString = "<ul>";
-          for (const key in responseData[52]) {
-            displayString += `<li><strong>${key}:</strong> ${responseData[52][key]}</li>`;
-          }
-          displayString += "</ul>";
-
-          const displayWindow = window.open("", "_blank");
-          displayWindow.document.write(`
-            <html>
-            <head>
-              <title>Retrieved Data</title>
-            </head>
-            <body>
-              <h2>Retrieved Data</h2>
-              <div>${displayString}</div>
-            </body>
-            </html>
-          `);
+          console.log("Retrieved data:", responseData[52]);
+          // Now you can update your form fields with the retrieved data if needed
         } else {
           console.error("Failed to retrieve data.");
         }
