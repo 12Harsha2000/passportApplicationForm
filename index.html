@@ -112,6 +112,7 @@
 
         if (response.ok) {
           console.log("Form data submitted successfully.");
+
         } else {
           console.error("Failed to submit form data.");
         }
@@ -128,8 +129,8 @@
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log("Retrieved data:", responseData[52]);
-          // Now you can update your form fields with the retrieved data if needed
+          console.log("Retrieved data:", responseData);
+        // Now you can update your form fields with the retrieved data if needed
         } else {
           console.error("Failed to retrieve data.");
         }
